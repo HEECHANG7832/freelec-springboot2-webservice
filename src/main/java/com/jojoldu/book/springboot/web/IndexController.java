@@ -3,6 +3,7 @@ package com.jojoldu.book.springboot.web;
 import com.jojoldu.book.springboot.config.auth.LoginUser;
 import com.jojoldu.book.springboot.config.auth.dto.SessionUser;
 import com.jojoldu.book.springboot.service.PostsService;
+import com.jojoldu.book.springboot.service.TablesService;
 import com.jojoldu.book.springboot.web.dto.PostsResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 public class IndexController {
 
     private final PostsService postsService;
+    private final TablesService tablesService;
 
     @GetMapping("/")
     public String index(Model model, @LoginUser SessionUser user) {
@@ -36,5 +38,11 @@ public class IndexController {
         model.addAttribute("post", dto);
 
         return "posts-update";
+    }
+
+    @GetMapping("/tables")
+    public String tables(Model model) {
+        model.addAttribute("tables", tablesService.findAll());
+        return "tables";
     }
 }
