@@ -33,7 +33,7 @@ public class RestTemplateService {
     public SummonerDto callPostExternalServer() {
         SummonerDto summonerDto = new SummonerDto();
 
-        return apiService.get("https://kr.api.riotgames.com/tft/summoner/v1/summoners/by-name/hide on bush?api_key=RGAPI-6a8b4975-f09c-43c5-b5a1-3daa0c24cb38", HttpHeaders.EMPTY, SummonerDto.class).getBody();
+        return apiService.get("https://kr.api.riotgames.com/tft/summoner/v1/summoners/by-name/hide on bush?api_key=", HttpHeaders.EMPTY, SummonerDto.class).getBody();
     }
 }
 
