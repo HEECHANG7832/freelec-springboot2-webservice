@@ -9,4 +9,8 @@ import java.util.List;
 
 @Repository
 public interface TablesRepository extends JpaRepository<Tables, Long> {
+
+    @Query("SELECT t FROM Tables t WHERE t.DateString = ?1")
+    List<Tables> findTodaysTicker(String Date);
+
 }

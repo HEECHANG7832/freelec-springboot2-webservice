@@ -42,7 +42,7 @@ public class IndexController {
 
     @GetMapping("/tables")
     public String tables(Model model) {
-        model.addAttribute("tables", tablesService.findAll());
+        model.addAttribute("tables", tablesService.findTodaysTicker());
         return "tables";
     }
 }

@@ -28,7 +28,7 @@ public class TablesRepositoryTest {
     }
 
     @Test
-    public void 테이블_불러오기() {
+    public void findTodaysTicker_Test() {
         //given
         String DateString = "2020-01-02";
         String Ticker = "ETH_TEST";
@@ -42,7 +42,7 @@ public class TablesRepositoryTest {
                 .build());
 
         //when
-        List<Tables> TablesList = tablesRepository.findAll();
+        List<Tables> TablesList = tablesRepository.findTodaysTicker("2020-01-02");
 
         for(Tables table : TablesList){
             System.out.println(table.getCurrentPrice());
