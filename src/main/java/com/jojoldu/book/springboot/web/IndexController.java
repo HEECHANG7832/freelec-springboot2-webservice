@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @RequiredArgsConstructor
 @Controller
@@ -27,6 +28,15 @@ public class IndexController {
         return "index";
     }
 
+    @RequestMapping("/posts")
+    public String post(Model model, @LoginUser SessionUser user) {
+        model.addAttribute("posts", postsService.findAllDesc());
+        if (user != null) {
+            model.addAttribute("userName", user.getName());
+        }
+        return "posts";
+    }
+
     @GetMapping("/posts/save")
     public String postsSave() {
         return "posts-save";
@@ -42,7 +52,19 @@ public class IndexController {
 
     @GetMapping("/tables")
     public String tables(Model model) {
-        model.addAttribute("tables", tablesService.findTodaysTicker());
+        model.addAttribute("tables", tablesService.findAll());
         return "tables";
+    }
+
+    @RequestMapping("/index")
+    public String index() {
+        return "index";
+    }
+
+
+
+    @RequestMapping("/timer")
+    public String timer() {
+        return "timer";
     }
 }
